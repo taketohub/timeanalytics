@@ -1,5 +1,8 @@
 import * as XLSX from "xlsx"
 
+/**
+ * Interface que define a estrutura dos dados brutos da planilha
+ */
 interface RawDataRow {
   Cadastro?: string | number
   "Nome do Colaborador"?: string
@@ -16,6 +19,9 @@ interface RawDataRow {
   "Data Fechamento"?: string | number
 }
 
+/**
+ * Interface que define a estrutura dos dados após o processamento
+ */
 interface ProcessedData {
   cadastro: string
   nome: string
@@ -32,7 +38,11 @@ interface ProcessedData {
   dataFechamento: string
 }
 
-// Convert time format HH:MM to decimal hours
+/**
+ * Converte um formato de tempo (HH:MM) para horas decimais
+ * @param time Tempo no formato HH:MM, HH:MM:SS ou como número
+ * @returns Número de horas em formato decimal
+ */
 function timeToDecimal(time: string | number): number {
   if (typeof time === "number") return time
 
@@ -53,6 +63,11 @@ function timeToDecimal(time: string | number): number {
   return isNaN(parsed) ? 0 : parsed
 }
 
+/**
+ * Processa um arquivo Excel ou CSV e retorna os dados formatados
+ * @param file Arquivo a ser processado (Excel ou CSV)
+ * @returns Array com os dados processados no formato ProcessedData
+ */
 export async function processExcelFile(file: File): Promise<ProcessedData[]> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

@@ -3,6 +3,10 @@
 import { FileSpreadsheet, CheckCircle2, AlertCircle, Info } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
+/**
+ * Componente que exibe a documentação e instruções de uso do sistema
+ * Inclui exemplos de formato de dados e instruções para importação
+ */
 export function Wiki() {
   return (
     <div className="max-w-5xl mx-auto space-y-6">

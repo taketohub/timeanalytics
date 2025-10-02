@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "Sistema de análise de banco de horas para colaboradores do Grupo Mateus",
 }
 
+/**
+ * Layout raiz da aplicação
+ * Configura o tema, fontes e estrutura base do layout
+ * @param children Componentes filhos a serem renderizados dentro do layout
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

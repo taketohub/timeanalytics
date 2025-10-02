@@ -14,6 +14,12 @@ const oklchToHexMap: Record<string, string> = {
   "oklch(0.5 0 0)": "#808080", // Muted foreground
 }
 
+/**
+ * Exporta os dados, KPIs e gráficos para um arquivo PDF
+ * @param data Array com os dados dos colaboradores
+ * @param kpis Objeto contendo os indicadores-chave de desempenho
+ * @param chartData Dados dos gráficos para serem incluídos no relatório
+ */
 export async function exportToPDF(data: any[], kpis: any, chartData: any) {
   try {
     const pdf = new jsPDF("p", "mm", "a4")
@@ -87,6 +93,11 @@ export async function exportToPDF(data: any[], kpis: any, chartData: any) {
   }
 }
 
+/**
+ * Exporta um gráfico específico para um arquivo PNG
+ * @param element Elemento HTML contendo o gráfico
+ * @param chartName Nome do gráfico para usar no nome do arquivo
+ */
 export async function exportChartToPNG(element: HTMLElement, chartName: string) {
   try {
     const clone = element.cloneNode(true) as HTMLElement
@@ -131,6 +142,11 @@ export async function exportChartToPNG(element: HTMLElement, chartName: string) 
   }
 }
 
+/**
+ * Exporta os dados para um arquivo CSV
+ * @param data Array com os dados a serem exportados
+ * @param filename Nome base do arquivo sem extensão
+ */
 export function exportToCSV(data: any[], filename: string) {
   try {
     if (data.length === 0) {

@@ -14,6 +14,10 @@ interface DashboardProps {
   data: any[]
 }
 
+/**
+ * Componente principal do dashboard que exibe análises do banco de horas
+ * @param data Array com os dados dos colaboradores a serem analisados
+ */
 export function Dashboard({ data }: DashboardProps) {
   const [filters, setFilters] = useState({
     startDate: "",
@@ -91,9 +95,9 @@ export function Dashboard({ data }: DashboardProps) {
     )
 
     const topNegativeSectors = Object.entries(sectorNegative)
-      .sort(([, a], [, b]) => b - a)
+      .sort(([, a], [, b]) => (b as number) - (a as number))
       .slice(0, 10)
-      .map(([name, value]) => ({ name, value }))
+      .map(([name, value]) => ({ name, value: value as number }))
 
     // Aggregate by sector for saldoPositivo
     const sectorPositive = filteredData.reduce(
@@ -106,9 +110,9 @@ export function Dashboard({ data }: DashboardProps) {
     )
 
     const topPositiveSectors = Object.entries(sectorPositive)
-      .sort(([, a], [, b]) => b - a)
+      .sort(([, a], [, b]) => (b as number) - (a as number))
       .slice(0, 10)
-      .map(([name, value]) => ({ name, value }))
+      .map(([name, value]) => ({ name, value: value as number }))
 
     return {
       topNegativeEmployees,

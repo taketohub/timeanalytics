@@ -7,10 +7,18 @@ import { Upload, FileSpreadsheet, CheckCircle2, AlertCircle } from "lucide-react
 import { Button } from "@/components/ui/button"
 import { processExcelFile } from "@/utils/data-processor"
 
+/**
+ * Interface que define as propriedades do componente FileUpload
+ */
 interface FileUploadProps {
+  /** Função callback chamada quando os dados são importados com sucesso */
   onDataImport: (data: any[]) => void
 }
 
+/**
+ * Componente que permite o upload de arquivos Excel/CSV via drag-n-drop ou seleção
+ * Processa os arquivos e chama o callback com os dados importados
+ */
 export function FileUpload({ onDataImport }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)

@@ -6,6 +6,13 @@ import { FileUpload } from "@/components/file-upload"
 import { Dashboard } from "@/components/dashboard"
 import { Wiki } from "@/components/wiki"
 
+/**
+ * Página inicial da aplicação
+ * Gerencia a navegação entre as diferentes views:
+ * - Dashboard: Visualização dos dados e análises
+ * - Import: Upload de arquivos
+ * - Wiki: Documentação e ajuda
+ */
 export default function Home() {
   const [currentView, setCurrentView] = useState<"dashboard" | "import" | "wiki">("import")
   const [data, setData] = useState<any[]>([])

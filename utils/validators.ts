@@ -1,8 +1,16 @@
+/**
+ * Interface que define o resultado de uma validação
+ */
 export interface ValidationResult {
   isValid: boolean
   errors: string[]
 }
 
+/**
+ * Valida a extensão de um arquivo para garantir que seja um formato suportado (.xlsx, .xls, .csv)
+ * @param filename Nome do arquivo a ser validado
+ * @returns Objeto ValidationResult indicando se a extensão é válida
+ */
 export function validateFileExtension(filename: string): ValidationResult {
   const validExtensions = [".xlsx", ".xls", ".csv"]
   const extension = filename.substring(filename.lastIndexOf(".")).toLowerCase()
@@ -17,6 +25,11 @@ export function validateFileExtension(filename: string): ValidationResult {
   return { isValid: true, errors: [] }
 }
 
+/**
+ * Valida se todas as colunas obrigatórias estão presentes nos dados
+ * @param data Array com os dados importados da planilha
+ * @returns Objeto ValidationResult indicando se todas as colunas necessárias estão presentes
+ */
 export function validateRequiredColumns(data: any[]): ValidationResult {
   if (!data || data.length === 0) {
     return {
@@ -45,6 +58,11 @@ export function validateRequiredColumns(data: any[]): ValidationResult {
   return { isValid: true, errors: [] }
 }
 
+/**
+ * Valida se um valor está no formato correto de horas (HH:MM)
+ * @param value Valor a ser validado
+ * @returns true se o formato estiver correto, false caso contrário
+ */
 export function validateHoursFormat(value: any): boolean {
   if (typeof value === "number") return !isNaN(value)
   if (typeof value === "string") {
@@ -56,6 +74,11 @@ export function validateHoursFormat(value: any): boolean {
   return false
 }
 
+/**
+ * Valida se uma string está no formato correto de data (DD/MM/YYYY)
+ * @param dateString String contendo a data a ser validada
+ * @returns true se o formato estiver correto, false caso contrário
+ */
 export function validateDateFormat(dateString: string): boolean {
   if (!dateString) return true // Optional field
 

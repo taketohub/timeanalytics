@@ -8,10 +8,17 @@ import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
 
+/**
+ * Tipo que define a estrutura de um toast com todas suas propriedades
+ */
 type ToasterToast = ToastProps & {
+  /** ID único do toast */
   id: string
+  /** Título do toast */
   title?: React.ReactNode
+  /** Descrição ou conteúdo principal do toast */
   description?: React.ReactNode
+  /** Elemento de ação opcional (botão, link, etc.) */
   action?: ToastActionElement
 }
 
@@ -24,6 +31,10 @@ const actionTypes = {
 
 let count = 0
 
+/**
+ * Gera um ID único para cada toast
+ * @returns String contendo o ID gerado
+ */
 function genId() {
   count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()

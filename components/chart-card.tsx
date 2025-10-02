@@ -84,7 +84,7 @@ const renderCustomLabelVertical = (props: any) => {
       y={y - 5}
       fill="#1e293b"
       textAnchor="middle"
-      dominantBaseline="bottom"
+      dominantBaseline="text-after-edge"
       fontSize={12}
       fontWeight={600}
     >
@@ -93,6 +93,13 @@ const renderCustomLabelVertical = (props: any) => {
   )
 }
 
+/**
+ * Componente que exibe um gráfico com título e opções de exportação
+ * @param title Título do gráfico
+ * @param data Dados a serem exibidos no gráfico
+ * @param color Cor do background do card
+ * @param type Tipo de gráfico a ser renderizado
+ */
 export function ChartCard({ title, data, color, type }: ChartCardProps) {
   const handleExportChart = () => {
     const chartElement = document.getElementById(`chart-${title.replace(/\s+/g, "-")}`)

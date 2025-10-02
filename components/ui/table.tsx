@@ -4,6 +4,10 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Componente Table - Container principal para exibição de dados em formato tabular
+ * Estilizado para consistência com o design system
+ */
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div

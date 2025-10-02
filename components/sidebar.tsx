@@ -3,12 +3,22 @@
 import { Clock, LayoutDashboard, Upload, FileText, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+/**
+ * Interface que define as propriedades da barra lateral
+ */
 interface SidebarProps {
+  /** View atual selecionada */
   currentView: "dashboard" | "import" | "wiki"
+  /** Callback para mudança de view */
   onViewChange: (view: "dashboard" | "import" | "wiki") => void
+  /** Número total de registros carregados */
   totalRecords: number
 }
 
+/**
+ * Componente de barra lateral que permite navegação entre as diferentes views
+ * Exibe o logo do sistema e status dos dados carregados
+ */
 export function Sidebar({ currentView, onViewChange, totalRecords }: SidebarProps) {
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col">

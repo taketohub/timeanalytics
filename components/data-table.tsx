@@ -6,10 +6,20 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, Search } from "lucide-react"
 
+/**
+ * Interface que define as propriedades da tabela de dados
+ */
 interface DataTableProps {
+  /** Array contendo os dados a serem exibidos na tabela */
   data: any[]
 }
 
+/**
+ * Componente que exibe uma tabela de dados com funcionalidades de:
+ * - Pesquisa em tempo real
+ * - Paginação
+ * - Ordenação de colunas
+ */
 export function DataTable({ data }: DataTableProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)

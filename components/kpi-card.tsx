@@ -3,10 +3,17 @@
 import type { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+/**
+ * Interface que define as propriedades do componente KPICard
+ */
 interface KPICardProps {
+  /** Título do indicador */
   title: string
+  /** Valor do indicador */
   value: string | number
+  /** Ícone a ser exibido */
   icon: LucideIcon
+  /** Esquema de cores do card */
   color: "blue" | "red" | "green" | "purple"
 }
 
@@ -33,6 +40,10 @@ const colorClasses = {
   },
 }
 
+/**
+ * Componente que exibe um card com indicador chave de performance (KPI)
+ * @param props Propriedades do componente KPICard
+ */
 export function KPICard({ title, value, icon: Icon, color }: KPICardProps) {
   const colors = colorClasses[color]
 

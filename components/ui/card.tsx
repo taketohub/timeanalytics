@@ -2,6 +2,11 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Componente Card - Container principal para agrupamento de conteúdo relacionado
+ * @param className Classes CSS adicionais
+ * @param props Propriedades adicionais do elemento div
+ */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

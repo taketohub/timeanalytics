@@ -5,8 +5,13 @@ import { Filter, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+/**
+ * Interface que define as propriedades do painel de filtros
+ */
 interface FilterPanelProps {
+  /** Dados a serem filtrados */
   data: any[]
+  /** Estado atual dos filtros */
   filters: {
     startDate: string
     endDate: string
@@ -14,9 +19,14 @@ interface FilterPanelProps {
     cd: string
     employee: string
   }
+  /** Callback chamado quando os filtros são alterados */
   onFiltersChange: (filters: any) => void
 }
 
+/**
+ * Componente que exibe um painel de filtros para os dados
+ * Permite filtrar por período, setor, CD e colaborador
+ */
 export function FilterPanel({ data, filters, onFiltersChange }: FilterPanelProps) {
   // Extract unique values for dropdowns
   const uniqueValues = useMemo(() => {
