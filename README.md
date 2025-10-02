@@ -1,7 +1,5 @@
 # TimeAnalytics - Sistema de Análise de Banco de Horas
 
-![TimeAnalytics Logo](public/placeholder-logo.svg)
-
 O TimeAnalytics é uma aplicação web moderna desenvolvida para auxiliar na análise e gestão de banco de horas de colaboradores. Projetado especificamente para atender às necessidades do Grupo Mateus, o sistema oferece uma interface intuitiva e ferramentas poderosas para visualização e análise de dados.
 
 ## 🚀 Funcionalidades
