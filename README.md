@@ -81,15 +81,24 @@ pnpm dev
 
 O sistema espera arquivos com as seguintes colunas:
 
-| Coluna | Descrição | Obrigatório |
-|--------|-----------|-------------|
-| Nome do Colaborador | Nome completo | Sim |
-| Setor | Setor/Departamento | Sim |
-| Filial | Centro de Distribuição | Não |
-| Saldo Negativo | Horas negativas (HH:MM) | Não |
-| Saldo Positivo | Horas positivas (HH:MM) | Não |
-| Data Início | Data inicial do período | Não |
-| Data Fechamento | Data final do período | Não |
+| Coluna | Descrição | Obrigatório | Formato |
+|--------|-----------|-------------|---------|
+| Nome do Colaborador | Nome completo | Sim | Texto |
+| Setor | Setor/Departamento | Sim | Texto |
+| Filial | Centro de Distribuição | Sim | Texto |
+| Saldo Negativo | Horas negativas | Sim | Decimal (ex: 19,23 = 19h23min) |
+| Saldo Positivo | Horas positivas | Sim | Decimal (ex: 23,45 = 23h45min) |
+| Data Início | Data inicial do período | Não | Data (DD/MM/YYYY) |
+| Data Fechamento | Data final do período | Não | Data (DD/MM/YYYY) |
+
+### ⚠️ Importante: Formato de Horas
+Os campos de "Saldo Negativo" e "Saldo Positivo" devem estar em formato decimal usando vírgula como separador, onde:
+- A parte inteira representa as horas
+- A parte decimal representa os minutos
+- Exemplos:
+  - 19,23 = 19 horas e 23 minutos
+  - 1,55 = 1 hora e 55 minutos
+  - 23,45 = 23 horas e 45 minutos
 
 ## 👥 Equipe
 
