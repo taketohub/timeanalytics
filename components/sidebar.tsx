@@ -1,7 +1,9 @@
 "use client"
 
-import { Clock, LayoutDashboard, Upload, FileText, User } from "lucide-react"
+import { Clock, LayoutDashboard, Upload, FileText, User, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 /**
  * Interface que define as propriedades da barra lateral
@@ -20,8 +22,57 @@ interface SidebarProps {
  * Exibe o logo do sistema e status dos dados carregados
  */
 export function Sidebar({ currentView, onViewChange, totalRecords }: SidebarProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const isMobile = useIsMobile()
+
+  // Fecha o menu quando muda de view no mobile
+  useEffect(() => {
+    if (isMobile) {
+      setIsOpen(false)
+    }
+  }, [currentView, isMobile])
+
+  // Fecha o menu quando redimensiona para desktop
+  useEffect(() => {
+    if (!isMobile) {
+      setIsOpen(true)
+    } else {
+      setIsOpen(false)
+    }
+  }, [isMobile])
+
+  const handleNavigation = (view: "dashboard" | "import" | "wiki") => {
+    onViewChange(view)
+    if (isMobile) {
+      setIsOpen(false)
+    }
+  }
+
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
+    <>
+      {/* Botão do Menu Mobile */}
+      {isMobile && (
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="fixed top-4 left-4 z-50 p-2 rounded-lg bg-background border border-border hover:bg-accent/50 transition-colors"
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      )}
+
+      {/* Overlay para fechar o menu no mobile */}
+      {isMobile && isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      <aside className={cn(
+        "fixed top-0 h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300 z-40",
+        isMobile ? "w-[80%] max-w-[300px]" : "w-64",
+        isMobile && !isOpen ? "-left-full" : "left-0"
+      )}>
       {/* Logo Section */}
       <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
@@ -29,7 +80,7 @@ export function Sidebar({ currentView, onViewChange, totalRecords }: SidebarProp
             <Clock className="w-6 h-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-sidebar-foreground">TimeAnalytics</h1>
+            <h1 className="text-lg font-bold text-sidebar-foreground text-center sm:text-left">TimeAnalytics</h1>
             <p className="text-xs text-muted-foreground">Banco de Horas</p>
           </div>
         </div>
@@ -111,5 +162,6 @@ export function Sidebar({ currentView, onViewChange, totalRecords }: SidebarProp
         </div>
       </div>
     </aside>
+    </>
   )
 }

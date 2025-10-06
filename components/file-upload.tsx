@@ -104,7 +104,7 @@ export function FileUpload({ onDataImport }: FileUploadProps) {
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">Importar Banco de Horas</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-2 text-center sm:text-left">Importar Banco de Horas</h1>
         <p className="text-muted-foreground">
           Faça upload de uma planilha Excel ou CSV contendo os dados de banco de horas dos colaboradores
         </p>

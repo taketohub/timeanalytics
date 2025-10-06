@@ -12,7 +12,7 @@ export function Wiki() {
     <div className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-foreground">Wiki - Guia de Importação</h1>
+        <h1 className="text-3xl font-bold text-foreground text-center sm:text-left">Wiki - Guia de Importação</h1>
         <p className="text-muted-foreground">Aprenda como estruturar sua planilha para importação no TimeAnalytics</p>
       </div>
 

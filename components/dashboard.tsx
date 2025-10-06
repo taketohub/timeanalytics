@@ -135,10 +135,10 @@ export function Dashboard({ data }: DashboardProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Dashboard de Análise</h1>
-          <p className="text-muted-foreground mt-1">Visualize e analise o banco de horas dos colaboradores</p>
+      <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4">
+        <div className="w-full sm:w-auto text-center sm:text-left">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">Dashboard de Análise</h1>
+          <p className="text-sm md:text-base text-muted-foreground mt-1">Visualize e analise o banco de horas dos colaboradores</p>
         </div>
         {hasData && (
           <DropdownMenu>
@@ -168,7 +168,7 @@ export function Dashboard({ data }: DashboardProps) {
           <FilterPanel data={data} filters={filters} onFiltersChange={setFilters} />
 
           {/* KPIs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
             <KPICard title="Total Colaboradores" value={kpis.totalEmployees} icon={Users} color="blue" />
             <KPICard
               title="Horas Negativas"
@@ -186,7 +186,7 @@ export function Dashboard({ data }: DashboardProps) {
           </div>
 
           {/* Charts Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <ChartCard
               title="Top 10 Colaboradores - Horas Negativas"
               data={chartData.topNegativeEmployees}
@@ -220,7 +220,7 @@ export function Dashboard({ data }: DashboardProps) {
           <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
             <Clock className="w-10 h-10 text-muted-foreground" />
           </div>
-          <h2 className="text-xl font-semibold text-foreground mb-2">Nenhum dado disponível</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-2 text-center">Nenhum dado disponível</h2>
           <p className="text-muted-foreground text-center max-w-md">
             Importe uma planilha de banco de horas para visualizar as análises e estatísticas
           </p>

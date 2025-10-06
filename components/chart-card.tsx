@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { TrendingUp, TrendingDown, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { exportChartToPNG } from "@/utils/export-utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface ChartCardProps {
   title: string
@@ -26,7 +27,8 @@ const backgroundColorMap = {
 }
 
 const CustomYAxisTick = ({ x, y, payload }: any) => {
-  const maxChars = 25 // Increased from 20 to 25 characters
+  // Ajusta o número de caracteres com base no tamanho da tela
+  const maxChars = window.innerWidth < 768 ? 15 : 25
   const text = payload.value || ""
   const displayText = text.length > maxChars ? `${text.substring(0, maxChars)}...` : text
 
@@ -101,6 +103,8 @@ const renderCustomLabelVertical = (props: any) => {
  * @param type Tipo de gráfico a ser renderizado
  */
 export function ChartCard({ title, data, color, type }: ChartCardProps) {
+  const isMobile = useIsMobile()
+  
   const handleExportChart = () => {
     const chartElement = document.getElementById(`chart-${title.replace(/\s+/g, "-")}`)
     if (chartElement) {
@@ -108,19 +112,27 @@ export function ChartCard({ title, data, color, type }: ChartCardProps) {
     }
   }
 
+  // Ajusta a altura do gráfico com base no dispositivo e tipo
+  const getChartHeight = () => {
+    if (isMobile) {
+      return type === "horizontal-bar" ? 300 : 250
+    }
+    return type === "horizontal-bar" ? 400 : 300
+  }
+
   const isEmpty = !data || data.length === 0
   const isNegative = title.includes("Negativas")
 
   return (
-    <div className={`${backgroundColorMap[color]} rounded-xl border border-gray-200 p-2`}>
-      <div className="flex items-center justify-between mb-1">
+    <div className={`${backgroundColorMap[color]} rounded-xl border border-gray-200 p-2 md:p-4`}>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-1 gap-2">
         <div className="flex items-center gap-2">
           {isNegative ? (
-            <TrendingDown className="w-5 h-5 text-gray-700" />
+            <TrendingDown className="w-4 h-4 md:w-5 md:h-5 text-gray-700" />
           ) : (
-            <TrendingUp className="w-5 h-5 text-gray-700" />
+            <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-gray-700" />
           )}
-          <h3 className="text-base font-semibold text-gray-900">{title}</h3>
+          <h3 className="text-sm md:text-base font-semibold text-gray-900">{title}</h3>
         </div>
         {!isEmpty && (
           <Button variant="ghost" size="sm" onClick={handleExportChart} className="gap-2 h-8">
@@ -137,8 +149,8 @@ export function ChartCard({ title, data, color, type }: ChartCardProps) {
             </div>
           </div>
         ) : type === "horizontal-bar" ? (
-          <ResponsiveContainer width="100%" height={480}>
-            <BarChart data={data} layout="vertical" margin={{ top: 5, right: 25, left: 50, bottom: 5 }}>
+          <ResponsiveContainer width="100%" height={getChartHeight()}>
+            <BarChart data={data} layout="vertical" margin={{ top: 5, right: isMobile ? 35 : 25, left: isMobile ? 40 : 50, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" horizontal={false} />
               <XAxis type="number" tick={{ fill: "#64748b", fontSize: 11 }} />
               <YAxis type="category" dataKey="name" tick={<CustomYAxisTick />} width={180} />
@@ -161,8 +173,8 @@ export function ChartCard({ title, data, color, type }: ChartCardProps) {
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <ResponsiveContainer width="100%" height={480}>
-            <BarChart data={data} margin={{ top: 25, right: 20, left: 10, bottom: 100 }}>
+          <ResponsiveContainer width="100%" height={getChartHeight()}>
+            <BarChart data={data} margin={{ top: 25, right: isMobile ? 15 : 20, left: isMobile ? 5 : 10, bottom: isMobile ? 80 : 100 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
               <XAxis dataKey="name" tick={<CustomXAxisTick />} height={100} interval={0} />
               <YAxis tick={{ fill: "#64748b", fontSize: 12 }} />

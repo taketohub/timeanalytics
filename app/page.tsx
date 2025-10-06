@@ -23,10 +23,10 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background flex flex-col md:flex-row">
       <Sidebar currentView={currentView} onViewChange={setCurrentView} totalRecords={data.length} />
 
-      <main className="ml-64 min-h-screen p-8">
+      <main className="w-full min-h-screen p-4 md:p-8 md:ml-64">
         {currentView === "import" ? (
           <FileUpload onDataImport={handleDataImport} />
         ) : currentView === "wiki" ? (
